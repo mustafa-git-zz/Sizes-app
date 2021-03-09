@@ -47,10 +47,10 @@
       inputWidth.value = canvas.getBoundingClientRect().width;
       inputHeight.value = canvas.getBoundingClientRect().height;
 
-      inputWidth.addEventListener('change', (event) => {
+      inputWidth.addEventListener('input', (event) => {
         canvas.style.width = inputWidth.value + unit.value;
       });
-      inputHeight.addEventListener('change', (event) => {
+      inputHeight.addEventListener('input', (event) => {
         canvas.style.height = inputHeight.value + unit.value;
       });
       unit.addEventListener('change', (event) => {
