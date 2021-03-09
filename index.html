@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sizes app</title>
+    <style>
+      body {
+        background-color: #cdc733;
+        color: #966c3b;
+      }
+      #title {
+        text-align: center;
+      }
+      #controls {
+        margin-left: 20%;
+        margin-top: 0px;
+      }
+      #canvas {
+        margin: 20px auto 0px auto;
+        border-width: 0px;
+        background-color: #8f765a;
+        width: 800px;
+        height: 600px;
+      }
+      input {
+        width: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Sizes App</h1>
+    <div id="controls">
+      Width: <input type="number" id="width"> Height: <input type="number" id="height">
+       <select id="unit">
+        <option value="px">Pixel</option>
+        <option value="cm">Centimeter</option>
+        <option value="mm">Millimeter</option>
+        <option value="in">Inch</option>
+      </select>
+    </div>
+    <div id="canvas"></div>
+    <script type="text/javascript">
+      let inputWidth = document.querySelector('#width');
+      let inputHeight = document.querySelector('#height');
+      let unit = document.querySelector('#unit');
+      let canvas = document.querySelector('#canvas');
+      inputWidth.value = canvas.getBoundingClientRect().width;
+      inputHeight.value = canvas.getBoundingClientRect().height;
+
+      inputWidth.addEventListener('change', (event) => {
+        canvas.style.width = inputWidth.value + unit.value;
+      });
+      inputHeight.addEventListener('change', (event) => {
+        canvas.style.height = inputHeight.value + unit.value;
+      });
+      unit.addEventListener('change', (event) => {
+        canvas.style.width = inputWidth.value + unit.value;
+        canvas.style.height = inputHeight.value + unit.value;
+      });
+    </script>
+  </body>
+</html>
