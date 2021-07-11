@@ -60,7 +60,7 @@
         case "px":
           canvas.style.width = inputWidth.value + unit.value;
         default:
-          canvas.style.width = inputWidth.value/scale + unit.value;
+          canvas.style.width = inputWidth.value*scale + unit.value;
       }
     });
     inputHeight.addEventListener('input', (event) => {
@@ -68,7 +68,7 @@
         case "px":
           canvas.style.height = inputHeight.value + unit.value;
         default:
-          canvas.style.height = inputHeight.value/scale + unit.value;
+          canvas.style.height = inputHeight.value*scale + unit.value;
       }
     });
     unit.addEventListener('change', (event) => {
@@ -77,8 +77,8 @@
           canvas.style.width = inputWidth.value + unit.value;
           canvas.style.height = inputHeight.value + unit.value;
         default:
-          canvas.style.width = inputWidth.value/scale + unit.value;
-          canvas.style.height = inputHeight.value/scale + unit.value;
+          canvas.style.width = inputWidth.value*scale + unit.value;
+          canvas.style.height = inputHeight.value*scale + unit.value;
       }
     });
   </script>
