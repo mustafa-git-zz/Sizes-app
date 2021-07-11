@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sizes app</title>
-    <style>
-      body {
-        background-color: #cdc733;
-        color: #966c3b;
-      }
-      #title {
-        text-align: center;
-      }
-      #controls {
-        margin-left: 20%;
-        margin-top: 0px;
-      }
-      #canvas {
-        margin: 20px auto 0px auto;
-        border-width: 0px;
-        background-color: #8f765a;
-        width: 800px;
-        height: 600px;
-      }
-      input {
-        width: 60px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 id="title">Sizes App</h1>
-    <div id="controls">
-      Width: <input type="number" id="width" step="any"> Height: <input type="number" id="height" step="any">
-       <select id="unit">
-        <option value="px">Pixel</option>
-        <option value="cm">Centimeter</option>
-        <option value="mm">Millimeter</option>
-        <option value="in">Inch</option>
-      </select>
-    </div>
-    <div id="canvas"></div>
-    <script type="text/javascript">
-      let inputWidth = document.querySelector('#width');
-      let inputHeight = document.querySelector('#height');
-      let unit = document.querySelector('#unit');
-      let canvas = document.querySelector('#canvas');
-      inputWidth.value = canvas.getBoundingClientRect().width;
-      inputHeight.value = canvas.getBoundingClientRect().height;
 
-      inputWidth.addEventListener('input', (event) => {
-        canvas.style.width = inputWidth.value + unit.value;
-      });
-      inputHeight.addEventListener('input', (event) => {
-        canvas.style.height = inputHeight.value + unit.value;
-      });
-      unit.addEventListener('change', (event) => {
-        canvas.style.width = inputWidth.value + unit.value;
-        canvas.style.height = inputHeight.value + unit.value;
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sizes app</title>
+  <style>
+    body {
+      background-color: #cdc733;
+      color: #966c3b;
+    }
+
+    #title {
+      text-align: center;
+    }
+
+    #controls {
+      margin-left: 20%;
+      margin-top: 0px;
+    }
+
+    #canvas {
+      margin: 20px auto 0px auto;
+      border-width: 0px;
+      background-color: #8f765a;
+      width: 800px;
+      height: 600px;
+    }
+
+    input {
+      width: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="title">Sizes App</h1>
+  <div id="controls">
+    Width: <input type="number" id="width" step="any"> Height: <input type="number" id="height" step="any">
+    <select id="unit">
+      <option value="px">Pixel</option>
+      <option value="cm">Centimeter</option>
+      <option value="mm">Millimeter</option>
+      <option value="in">Inch</option>
+    </select>
+  </div>
+  <div id="canvas"></div>
+  <script type="text/javascript">
+    let inputWidth = document.querySelector('#width');
+    let inputHeight = document.querySelector('#height');
+    let unit = document.querySelector('#unit');
+    let canvas = document.querySelector('#canvas');
+    let scale = window.devicePixelRatio;
+    inputWidth.value = canvas.getBoundingClientRect().width;
+    inputHeight.value = canvas.getBoundingClientRect().height;
+
+    inputWidth.addEventListener('input', (event) => {
+      switch (unit.value) {
+        case "px":
+          canvas.style.width = inputWidth.value + unit.value;
+        default:
+          canvas.style.width = inputWidth.value/scale + unit.value;
+      }
+    });
+    inputHeight.addEventListener('input', (event) => {
+      switch (unit.value) {
+        case "px":
+          canvas.style.height = inputHeight.value + unit.value;
+        default:
+          canvas.style.height = inputHeight.value/scale + unit.value;
+      }
+    });
+    unit.addEventListener('change', (event) => {
+      switch (unit.value) {
+        case "px":
+          canvas.style.width = inputWidth.value + unit.value;
+          canvas.style.height = inputHeight.value + unit.value;
+        default:
+          canvas.style.width = inputWidth.value/scale + unit.value;
+          canvas.style.height = inputHeight.value/scale + unit.value;
+      }
+    });
+  </script>
+</body>
+
 </html>
